@@ -89,12 +89,10 @@ public class ElasticsearchTemplateTest {
 
   @Test
   public void getAccountTemplateSearchTest() {
-
     SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("name", "wonwoo")).build();
 //    SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchAllQuery())
 //      .withFilter(boolQuery().filter(termQuery("name", "wonwoo"))).build();
     List<Account> accounts = elasticsearchTemplate.queryForList(searchQuery, Account.class);
-
     String str = accounts.stream()
       .map(i -> i.toString())
       .collect(joining("\n"));
@@ -104,9 +102,7 @@ public class ElasticsearchTemplateTest {
 
   @Test
   public void getAccountTemplateSearchWildcardQueryTest() {
-
     SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(wildcardQuery("name", "*wonwoo*")).build();
-
     List<Account> accounts = elasticsearchTemplate.queryForList(searchQuery, Account.class);
     String str = accounts.stream()
       .map(i -> i.toString())
